@@ -47,7 +47,10 @@ async function insertPurchases(customer){
     const conn = await connect();
     const sql = 'INSERT INTO Purchases(idclient,product,date) VALUES ($1,$2,$3);';
     const values = [customer.idclient, customer.product, customer.date];
-    return await conn.query(sql, values);
+    sql2 = 'UPDATE product SET quantity=quantity-1 WHERE name=$1'
+    const query1=await conn.query(sql, values)
+  const query2= await conn.query(sql2,[customer.product])
+    return  query1;
 }
 
 
@@ -91,7 +94,8 @@ async function deletePurchasesById(id){
 async function selectPurchasesByClient(id){
       const client = await connect();
       const sql = 'SELECT * FROM purchases WHERE purchases.idclient=$1;';
-      return await client.query(sql, [id]);
+      const rows = await client.query(sql, [id]);
+      return rows.rows
 }
 
 async function selectPurchasesByClientandDate(id,type,data){
@@ -116,10 +120,55 @@ async function selectPurchasesByClientandDate(id,type,data){
       return rows.rows;
 }
 
+async function selectPurchasesByCountandDate(type,data){
+  var typedata='';
+  switch (type) {
+                  case 'day':
+                  typedata='DD-MM-YYYY';
+                  break;
+                  case 'month':
+                  typedata='MM-YYYY';
+                  break;
+                  case 'year':
+                  typedata='YYYY';
+                  break;
+                  default:
+                  typedata='DD-MM-YYYY';
+                }
+      console.log(typedata)
+      const client = await connect();
+      const sql = 'SELECT product,COUNT(product) AS total  from purchases WHERE to_char(DATE, $1)= to_char(date($2) , $1) GROUP BY product ORDER BY total desc';
+      const rows =  await client.query(sql,[typedata,data]);
+      return rows.rows;
+}
+
+async function selectClientBySpentandDate(type,data){
+  var typedata='';
+  switch (type) {
+                  case 'day':
+                  typedata='DD-MM-YYYY';
+                  break;
+                  case 'month':
+                  typedata='MM-YYYY';
+                  break;
+                  case 'year':
+                  typedata='YYYY';
+                  break;
+                  default:
+                  typedata='DD-MM-YYYY';
+                }
+      console.log(typedata)
+      const client = await connect();
+      const sql = 'SELECT client.name, SUM(product.price) AS spent from purchases JOIN client ON purchases.idclient=client.id JOIN product ON product.name=purchases.product WHERE   to_char(DATE, $1)= to_char( date($2) , $1) GROUP BY  client.name ORDER BY spent desc';
+      const rows =  await client.query(sql,[typedata,data]);
+      return rows.rows;
+}
 
 
 
 
 
 
-module.exports = {selectClient,selectProduct,selectPurchases,insertClient,insertProduct,insertPurchases,updateClientById,updateProductById,updatePurchasesById,deleteClientById,deleteProductById,deletePurchasesById,selectPurchasesByClientandDate}
+
+
+module.exports = {selectClient,selectProduct,selectPurchases,insertClient,insertProduct,insertPurchases,updateClientById,updateProductById,updatePurchasesById,deleteClientById,deleteProductById,deletePurchasesById,selectPurchasesByClient,selectPurchasesByClientandDate,selectPurchasesByCountandDate,selectClientBySpentandDate}

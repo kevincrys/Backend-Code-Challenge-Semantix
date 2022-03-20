@@ -2,24 +2,22 @@ var express = require('express');
 var app = express();
 
 var dbsql = require('./db/dbsql');
-//var client = dbsql.selectClient();
-//  client.then(sql => {console.log(sql)})
 
-//var product = dbsql.selectProduct();
- //product.then(sql => {console.log(sql)})
+var client = require('./routes/client');
+var product = require('./routes/product');
+var purchases = require('./routes/purchases');
+var clientPurchases = require('./routes/clientPurchases');
+var clientPurchasesDate = require('./routes/clientPurchasesDate');
+var mostPurchasedProduct = require('./routes/mostPurchasedProduct');
+var mostSpendestClient = require('./routes/mostSpendestClient');
 
-//var Purchases = dbsql.selectPurchases();
- //Purchases.then(sql => {console.log(sql)})
+app.use('/client', client);
+app.use('/product', product);
+app.use('/purchases', purchases);
+app.use('/clientPurchases', clientPurchases);
+app.use('/clientPurchasesDate', clientPurchasesDate);
+app.use('/mostPurchasedProduct', mostPurchasedProduct);
+app.use('/mostSpendestClient', mostSpendestClient);
 
-//var client = dbsql.insertClient({name:'kevin' ,tel:'tel:(21)-78994-4768',email:'ikevin@gmail.com'})
-//  client.then(sql => {console.log(sql)})
 
-//var product = dbsql.insertProduct({name:'calça' ,quantity:50 ,price:80.00})
-//  product.then(sql => {console.log(sql)})
-
-//var purchases = dbsql.insertPurchases({idclient:1,product:'bermuda' ,date:'2022-03-17'})
- //purchases.then(sql => {console.log(sql)})
-//'month','2022-03-17'
-var purchases= dbsql.selectPurchasesByClientandDate(4,'month','2022-03-17')
-  purchases.then(sql => {console.log(sql)})
-app.listen(3000, function(){});
+ app.listen(3000, function(){});
