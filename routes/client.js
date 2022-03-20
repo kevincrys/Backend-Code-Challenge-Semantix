@@ -31,7 +31,7 @@ router.post('/:name/:tel/:email', (req, res) => {
 
       });
 
-//operação de deleção dos dados de usuários cadastrados
+//operação de deleção de dados de usuários cadastrados
   router.delete('/:id', (req, res) => {
     var client = dbsql.deleteClientById(req.params.id);
       client.then(sql => {res.send(sql)})
