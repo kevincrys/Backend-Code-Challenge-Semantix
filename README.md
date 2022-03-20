@@ -111,7 +111,12 @@ para listar as compras de um cliente por dia, mês e ano, basta acessar a endpoi
 [GET] http://localhost:3000/clientPurchasesDate/id/type/date
 
 para listar de forma ordenada os produtos mais vendidos por dia, mês e ano. basta acessar a endpoint abaixo, com os parametros  type e date.
+
 [GET] http://localhost:3000/mostPurchasedProduct/type/date
 
 para listar de forma ordenada os clientes que mais gastam por dia, mês e ano. basta acessar a endpoint abaixo, com os parametros  type e date.
+
 [GET] http://localhost:3000/mostSpendestClient/type/date
+
+
+para realizar testes, basta rodar o comando nmp test
