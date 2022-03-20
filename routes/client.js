@@ -21,7 +21,7 @@ router.post('/:name/:tel/:email', (req, res) => {
 
     });
 
-//operação de atualização dos dados de usuários cadastrados
+//operação de atualização de dados de usuários cadastrados
   router.put('/:id/:name/:tel/:email', (req, res) => {
     var client = dbsql.updateClientById(req.params.id,{name: req.params.name,tel: req.params.tel,email: req.params.email});
       client.then(sql => {res.send({sql})})
