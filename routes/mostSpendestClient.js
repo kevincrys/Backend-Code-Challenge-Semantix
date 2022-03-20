@@ -5,7 +5,9 @@ const dbsql = require("../db/dbsql");
 router.get('/:type/:date', function(req, res, next) {
   var purchases= dbsql.selectClientBySpentandDate(req.params.type,req.params.date)
    purchases.then(sql => {res.send(sql)})
-
+   purchases.catch(function(e) {
+  console.log(e);
+    })
 })
 
 module.exports = router;

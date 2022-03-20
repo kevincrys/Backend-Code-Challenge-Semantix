@@ -31,7 +31,6 @@ async function selectPurchases(){
 
 
 async function insertClient(customer){
-    console.log("função chamadaS")
     const conn = await connect();
     const sql = 'INSERT INTO client(name,tel,email) VALUES ($1,$2,$3);';;
     const values = [customer.name, customer.tel, customer.email];
@@ -60,16 +59,16 @@ async function updateClientById(id, customer){
     const values = [ customer.name, customer.tel, customer.email,id];
     return await conn.query(sql, values);
 }
-async function updateProductById(id, customer){
+async function updateProductById( customer){
     const conn = await connect();
-    const sql = 'UPDATE Product SET name=$1,quantity=$2,price=$3 WHERE Product.name=$4';
-    const values = [ customer.name, customer.quantity, customer.price,id];
+    const sql = 'UPDATE Product SET quantity=$1,price=$2 WHERE Product.name=$3';
+    const values = [ customer.quantity, customer.price, customer.name];
     return await conn.query(sql, values);
 }
 async function updatePurchasesById(id, customer){
     const conn = await connect();
-    const sql = 'UPDATE Purchases SET idClient=$1,product=$2,price=$3,date=$4 WHERE Purchase.idProduct=$5';
-    const values = [ customer.idClient, customer.product, customer.price, customer.date,id];
+    const sql = 'UPDATE purchases SET idclient=$1,product=$2,date=$3 WHERE idpurchases=$4';
+    const values = [ customer.idclient, customer.product, customer.date,id];
     return await conn.query(sql, values);
 }
 
@@ -79,14 +78,15 @@ async function deleteClientById(id){
       const sql = 'DELETE FROM Client where Client.id=$1;';
       return await client.query(sql, [id]);
 }
-async function deleteProductById(id){
+async function deleteProductById(name){
+var nome=14
       const client = await connect();
-      const sql = 'DELETE FROM Product where Product.name=$1;';
-      return await client.query(sql, [id]);
+      const sql = 'DELETE FROM Product where name=$1;';
+      return await client.query(sql, [nome]);
 }
 async function deletePurchasesById(id){
       const client = await connect();
-      const sql = 'DELETE FROM Purchases where Purchase.idProduct=$1;';
+      const sql = 'DELETE FROM Purchases where idpurchases=$1;';
       return await client.query(sql, [id]);
 }
 
