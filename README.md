@@ -1,7 +1,7 @@
 # Backend-Code-Challenge-Semantix
 Backend Code Challenge by Semantix
 
-para usar o aplicativo do tipo api, basta iniciar ele usando node e acessar as endpoins explicadas abaixo, o aplicativo possui as seguintes funcionalidades
+<h3>para usar o aplicativo do tipo api, basta iniciar ele usando node e acessar as endpoins explicadas abaixo, o aplicativo possui as seguintes funcionalidades</h3>
 
    -listar, cadastrar, atualizar e deletar um produto, cliente e compra.
 
@@ -15,7 +15,7 @@ para usar o aplicativo do tipo api, basta iniciar ele usando node e acessar as e
 
  <br>
 
-para as operações de crud para os dados do cliente , são usados os seguintes parametros
+<h3>para as operações de crud para os dados do cliente , são usados os seguintes parametros</h3>
 
   -id: id inteiro que identifica o cliente no banco de  dados
 
@@ -26,7 +26,7 @@ para as operações de crud para os dados do cliente , são usados os seguintes 
   -email: string representando o Email do cliente
 
  <br>
-as operações de crud  e seus endpoints  para os dados do cliente são:
+<h3>as operações de crud  e seus endpoints  para os dados do cliente são:</h3>
 
 listar clientes:
 [GET] http://localhost:3000/client
@@ -41,7 +41,7 @@ deletar clientes:
 [DELETE] http://localhost:3000/client/id
 
 <br>
-para as operações de crud para os dados do produto , são usados os seguintes parametros
+<h3>para as operações de crud para os dados do produto , são usados os seguintes parametros</h3>
 
   -name: string representando o nome do produto
 
@@ -50,7 +50,7 @@ para as operações de crud para os dados do produto , são usados os seguintes 
   -price: double representando o valor do produto
 
    <br>
-as operações de crud  e seus endpoints para os dados do produto são:
+<h3>as operações de crud  e seus endpoints para os dados do produto são:</h3>
 
 listar produtos:
 [GET] http://localhost:3000/product
@@ -65,8 +65,7 @@ deletar produtos:
 [DELETE] http://localhost:3000/product/name
 
 <br>
-para as operações de crud para os dados de compras, são usados os seguintes parametros
-id/idclient/product/date
+<h3>para as operações de crud para os dados de compras, são usados os seguintes parametros</h3>
 
   -id: Inteiro que identifica  a compra no banco de  dados
 
@@ -77,7 +76,7 @@ id/idclient/product/date
   -date:String que representa a data de compra.
 
  <br>
-as operações de crud  e seus endpoints para os dados de compras são:
+<h3>as operações de crud  e seus endpoints para os dados de compras são:</h3>
 
 listar produtos:
 [GET] http://localhost:3000/purchases
@@ -92,7 +91,7 @@ deletar produtos:
 [DELETE] http://localhost:3000/purchases/id
 
 <br>
-parametros usados nas endpoints abaixo:
+<h3>parametros usados nas endpoints abaixo:</h3>
 
 id: Inteiro que representa o id do cliente  e é usado para identificar o cliente no banco de dados .
 
@@ -100,7 +99,7 @@ type: String que representa o tipo de comparação de data, dia, mês e ano, ond
 
 date:String que representa a data a ser comparada, bastando passar data  ou String no padrão "YYYY-MM-DD".
 
-
+<h3>Funcionalidades e seus respectivos endpoints </h3>
 <br>
 para filtrar as compras por cliente, basta acessar a seguinte endpoint, com o parametro id
 
@@ -119,4 +118,4 @@ para listar de forma ordenada os clientes que mais gastam por dia, mês e ano. b
 [GET] http://localhost:3000/mostSpendestClient/type/date
 
 
-para realizar testes, basta rodar o comando nmp test
+<h3>para realizar testes, basta rodar o comando nmp test</h3>
